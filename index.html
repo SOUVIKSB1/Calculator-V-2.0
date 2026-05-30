@@ -1,53 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CALCULATOR V 3.0</title>
-    <link rel="stylesheet" href="sheet.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CALC — V4.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="sheet.css" />
 </head>
 <body>
-    <header> Calculator</header>
-    <div class="calculator">
-        <input type="text" placeholder="0" id="inputBox">
-        <div>
-            <button class="func">AC</button>
-            <button class="func">DEL</button>
-            <button class="func">%</button>
-            <button class="func">/</button>
-        </div>
-        <div>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button class="func">*</button>
-        </div>
-        <div>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button class="func">-</button>
-        </div>
-        <div>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button class="func">+</button>
-        </div>
-        <div>
-            <button>0</button>
-            <button>00</button>
-            <button>.</button>
-            <button class="eql">=</button>
-        </div>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <header>
+    <span class="header-tag">&lt;</span>
+    CALC
+    <span class="header-tag">/&gt;</span>
+    <span class="version">V 4.0</span>
+  </header>
+
+  <div class="calculator">
+
+    <!-- Mode Toggle -->
+    <div class="mode-bar">
+      <button class="mode-btn active" id="btn-basic" onclick="setMode('basic')">BASIC</button>
+      <button class="mode-btn" id="btn-sci" onclick="setMode('sci')">SCIENTIFIC</button>
     </div>
-    <footer>
-        <h3>&lt; Souvik ./ &gt;</h3>
-        <h6>© All rights reserved |2024</h6>
-    </footer>
-    <script src="script.js"></script>
+
+    <!-- Display -->
+    <div class="display-wrapper">
+      <div class="display-expr" id="exprBox">0</div>
+      <div class="display-result" id="resultBox"></div>
+    </div>
+
+    <!-- History Panel -->
+    <div class="history-panel" id="historyPanel">
+      <div class="history-header">
+        <span>HISTORY</span>
+        <button class="clear-hist" onclick="clearHistory()">CLEAR</button>
+      </div>
+      <ul id="historyList"></ul>
+    </div>
+    <button class="hist-toggle" id="histToggle" onclick="toggleHistory()">⏱ HISTORY</button>
+
+    <!-- Scientific Pad -->
+    <div class="sci-pad" id="sciPad">
+      <button class="sci-btn" onclick="appendSci('Math.sin(')">sin</button>
+      <button class="sci-btn" onclick="appendSci('Math.cos(')">cos</button>
+      <button class="sci-btn" onclick="appendSci('Math.tan(')">tan</button>
+      <button class="sci-btn" onclick="appendSci('Math.log10(')">log</button>
+      <button class="sci-btn" onclick="appendSci('Math.log(')">ln</button>
+      <button class="sci-btn" onclick="appendSci('Math.sqrt(')">√</button>
+      <button class="sci-btn" onclick="appendSci('Math.PI')">π</button>
+      <button class="sci-btn" onclick="appendSci('Math.E')">e</button>
+      <button class="sci-btn" onclick="appendSci('**2')">x²</button>
+      <button class="sci-btn" onclick="appendSci('**')">xⁿ</button>
+      <button class="sci-btn" onclick="appendSci('(')"> ( </button>
+      <button class="sci-btn" onclick="appendSci(')')"> ) </button>
+    </div>
+
+    <!-- Basic Pad -->
+    <div class="basic-pad" id="basicPad">
+      <div class="row">
+        <button class="btn func" onclick="clearAll()">AC</button>
+        <button class="btn func" onclick="deleteLast()">DEL</button>
+        <button class="btn func" onclick="appendToExpr('%')">%</button>
+        <button class="btn func op" onclick="appendToExpr('/')">÷</button>
+      </div>
+      <div class="row">
+        <button class="btn" onclick="appendToExpr('7')">7</button>
+        <button class="btn" onclick="appendToExpr('8')">8</button>
+        <button class="btn" onclick="appendToExpr('9')">9</button>
+        <button class="btn func op" onclick="appendToExpr('*')">×</button>
+      </div>
+      <div class="row">
+        <button class="btn" onclick="appendToExpr('4')">4</button>
+        <button class="btn" onclick="appendToExpr('5')">5</button>
+        <button class="btn" onclick="appendToExpr('6')">6</button>
+        <button class="btn func op" onclick="appendToExpr('-')">−</button>
+      </div>
+      <div class="row">
+        <button class="btn" onclick="appendToExpr('1')">1</button>
+        <button class="btn" onclick="appendToExpr('2')">2</button>
+        <button class="btn" onclick="appendToExpr('3')">3</button>
+        <button class="btn func op" onclick="appendToExpr('+')">+</button>
+      </div>
+      <div class="row">
+        <button class="btn" onclick="appendToExpr('0')">0</button>
+        <button class="btn" onclick="appendToExpr('00')">00</button>
+        <button class="btn" onclick="appendToExpr('.')">.</button>
+        <button class="btn eql" onclick="calculate()">=</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <h3>&lt; Souvik ./ &gt;</h3>
+    <h6>© All rights reserved | 2025</h6>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
