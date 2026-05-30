@@ -1,66 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator V3.0</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CALC V2.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="sheet.css"/>
 </head>
 <body>
 
-<div class="container">
+  <header>
+    <span class="tag">&lt;</span>
+    CALC
+    <span class="tag">/&gt;</span>
+    <span class="ver">V 2.0</span>
+  </header>
 
-    <div class="calculator">
+  <div class="calc">
 
-        <div class="top-bar">
-            <h2>CALC X</h2>
-            <button id="historyBtn">🕒</button>
-        </div>
-
-        <div class="display-box">
-            <div class="previous" id="previous"></div>
-            <input type="text" id="display" readonly>
-        </div>
-
-        <div class="buttons">
-
-            <button class="operator">AC</button>
-            <button class="operator">DEL</button>
-            <button class="operator">%</button>
-            <button class="operator">÷</button>
-
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button class="operator">×</button>
-
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button class="operator">-</button>
-
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button class="operator">+</button>
-
-            <button>0</button>
-            <button>.</button>
-            <button class="equal">=</button>
-
-        </div>
-
+    <div class="mode-bar">
+      <button class="mode-btn active" id="btnBasic" onclick="setMode('basic')">BASIC</button>
+      <button class="mode-btn"        id="btnSci"   onclick="setMode('sci')">SCIENTIFIC</button>
     </div>
 
-    <div class="history-panel" id="historyPanel">
-        <h3>History</h3>
-        <ul id="historyList"></ul>
+    <div class="display">
+      <div class="expr"    id="expr">0</div>
+      <div class="preview" id="preview"></div>
     </div>
 
-</div>
+    <button class="hist-toggle" onclick="toggleHist()">⏱ HISTORY</button>
 
-<script src="script.js"></script>
+    <div class="hist-panel" id="histPanel">
+      <div class="hist-head">
+        <span>HISTORY</span>
+        <button class="hist-clear" onclick="clearHist()">CLEAR</button>
+      </div>
+      <ul class="hist-list" id="histList"></ul>
+    </div>
 
+    <div class="sci-pad" id="sciPad">
+      <button class="sci-btn" onclick="ins('Math.sin(')">sin</button>
+      <button class="sci-btn" onclick="ins('Math.cos(')">cos</button>
+      <button class="sci-btn" onclick="ins('Math.tan(')">tan</button>
+      <button class="sci-btn" onclick="ins('Math.log10(')">log</button>
+      <button class="sci-btn" onclick="ins('Math.log(')">ln</button>
+      <button class="sci-btn" onclick="ins('Math.sqrt(')">√</button>
+      <button class="sci-btn" onclick="ins('Math.PI')">π</button>
+      <button class="sci-btn" onclick="ins('Math.E')">e</button>
+      <button class="sci-btn" onclick="ins('**2')">x²</button>
+      <button class="sci-btn" onclick="ins('**')">xⁿ</button>
+      <button class="sci-btn" onclick="ins('(')">( </button>
+      <button class="sci-btn" onclick="ins(')')"> )</button>
+    </div>
+
+    <div class="pad">
+      <div class="row">
+        <button class="btn func" onclick="ac()">AC</button>
+        <button class="btn func" onclick="del()">DEL</button>
+        <button class="btn func" onclick="ins('%')">%</button>
+        <button class="btn op"   onclick="ins('/')">÷</button>
+      </div>
+      <div class="row">
+        <button class="btn"      onclick="ins('7')">7</button>
+        <button class="btn"      onclick="ins('8')">8</button>
+        <button class="btn"      onclick="ins('9')">9</button>
+        <button class="btn op"   onclick="ins('*')">×</button>
+      </div>
+      <div class="row">
+        <button class="btn"      onclick="ins('4')">4</button>
+        <button class="btn"      onclick="ins('5')">5</button>
+        <button class="btn"      onclick="ins('6')">6</button>
+        <button class="btn op"   onclick="ins('-')">−</button>
+      </div>
+      <div class="row">
+        <button class="btn"      onclick="ins('1')">1</button>
+        <button class="btn"      onclick="ins('2')">2</button>
+        <button class="btn"      onclick="ins('3')">3</button>
+        <button class="btn op"   onclick="ins('+')">+</button>
+      </div>
+      <div class="row">
+        <button class="btn"      onclick="ins('0')">0</button>
+        <button class="btn"      onclick="ins('00')">00</button>
+        <button class="btn"      onclick="ins('.')">.</button>
+        <button class="btn eql"  onclick="calc()">=</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <h3>&lt; Souvik./ &gt;</h3>
+    <h6>© All rights reserved | 2024</h6>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
