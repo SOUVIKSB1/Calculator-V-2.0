@@ -1,8 +1,3 @@
-/* ==============================
-   CALC V4.0  |  script.js
-   Souvik — All rights reserved
-============================== */
-
 let str   = '';       // raw expression string
 let fresh = false;    // true right after = was pressed
 let hist  = [];
